@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers as Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'books'], function () {
+    Route::get('', [Controllers\BookController::class, 'index']);
+    Route::post('insert', [Controllers\BookController::class, 'insert']);
 });
